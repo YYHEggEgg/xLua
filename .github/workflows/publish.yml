@@ -7,7 +7,7 @@ on:
     branches: [ "master", "luac-actions" ]
 
 jobs:
-  windows:
+  windows-x64-luac:
     runs-on: windows-2019
 
     steps:
