@@ -23,6 +23,6 @@ jobs:
       - name: Upload
         uses: actions/upload-artifact@v2
         with:
-          path: ./build/luac/CMakeFiles
-          name: luac_win64
+          path: ./build/luac/build64/Release
+          name: luac_win64_rel
           retention-days: 1
