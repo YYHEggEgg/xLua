@@ -73,11 +73,15 @@ add_executable (lua ${LUA_CORE} ${LUA_LIB} ${LUA})
 if (LUAC_COMPATIBLE_FORMAT)
 target_compile_definitions (luac PRIVATE LUAC_COMPATIBLE_FORMAT)
 target_compile_definitions (lua PRIVATE LUAC_COMPATIBLE_FORMAT)
-target_link_libraries(lua
-	m
-)
-target_link_libraries(luac
-	m
-)
+
+endif ()
+
+if (NOT WIN32)
+    target_link_libraries(luac
+        m
+    )
+    target_link_libraries(lua
+    	m
+    )
 endif ()
 
