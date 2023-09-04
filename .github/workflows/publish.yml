@@ -21,10 +21,15 @@ jobs:
           cd build\luac
           .\make_win64.bat
 
-      - name: Compile with luac
+      - name: Compile with built luac
         run: |
           cd build/luac/build64/Release
           ./luac -o xlua_test_win64.luac ../../xlua_test.lua
+
+      - name: Compile with std luac
+        run: |
+          cd build/luac/build64/Release
+          ./../../luac_std.exe -o xlua_test_std.luac ../../xlua_test.lua
       
       - name: Upload luac executable
         uses: actions/upload-artifact@v2
