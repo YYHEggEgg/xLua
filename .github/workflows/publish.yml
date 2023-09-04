@@ -36,7 +36,6 @@ jobs:
         with:
           path: ./build/luac/build32/Release
           name: luac_win32_rel
-          retention-days: 1
 
   windows-x64-luac:
     runs-on: windows-2019
@@ -67,7 +66,6 @@ jobs:
         with:
           path: ./build/luac/build64/Release
           name: luac_win64_rel
-          retention-days: 1
 
   unix-x64-luac:
     runs-on: ubuntu-latest
@@ -97,4 +95,3 @@ jobs:
         with:
           path: ./build/luac/build_unix/Release
           name: luac_unix64_rel
-          retention-days: 1
