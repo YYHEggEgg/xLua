@@ -76,7 +76,7 @@ target_compile_definitions (lua PRIVATE LUAC_COMPATIBLE_FORMAT)
 
 endif ()
 
-if (NOT WIN32)
+if (UNIX)
     target_link_libraries(luac
         m
     )
@@ -85,3 +85,9 @@ if (NOT WIN32)
     )
 endif ()
 
+if (WIN32 AND NOT CMAKE_CL_64)
+    set(CMAKE_C_FLAGS_RELEASE "-m32")
+    set(CMAKE_C_FLAGS_DEBUG "-m32")
+    set(CMAKE_CXX_FLAGS_RELEASE "-m32")
+    set(CMAKE_CXX_FLAGS_DEBUG "-m32")
+endif ()
