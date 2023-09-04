@@ -7,6 +7,37 @@ on:
     branches: [ "master", "luac-actions" ]
 
 jobs:
+  windows-x86-luac:
+    runs-on: windows-2019
+
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Insatll MSVC
+        uses: microsoft/setup-msbuild@v1.0.2
+      
+      - name: Build
+        run: |
+          cd build\luac
+          .\make_win32.bat
+
+      - name: Compile with built luac
+        run: |
+          cd build/luac/build32/Release
+          ./luac -o xlua_test_win32.luac ../../xlua_test.lua
+
+      - name: Compile with std luac
+        run: |
+          cd build/luac/build32/Release
+          ./../../luac_std.exe -o xlua_test_std.luac ../../xlua_test.lua
+      
+      - name: Upload luac executable
+        uses: actions/upload-artifact@v2
+        with:
+          path: ./build/luac/build32/Release
+          name: luac_win32_rel
+          retention-days: 1
+
   windows-x64-luac:
     runs-on: windows-2019
 
@@ -36,4 +67,34 @@ jobs:
         with:
           path: ./build/luac/build64/Release
           name: luac_win64_rel
+          retention-days: 1
+
+  unix-x64-luac:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Build
+        run: |
+          cd build/luac
+          ./make_unix.sh
+
+      - name: Configure compiled
+        run: |
+          cd build/luac/build_unix
+          mkdir Release
+          mv lua Release/lua
+          mv luac Release/luac
+
+      - name: Compile with built luac
+        run: |
+          cd build/luac/build_unix/Release
+          ./luac -o xlua_test_unix64.luac ../../xlua_test.lua
+      
+      - name: Upload luac executable
+        uses: actions/upload-artifact@v2
+        with:
+          path: ./build/luac/build64/Release
+          name: luac_unix64_rel
           retention-days: 1
