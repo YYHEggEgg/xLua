@@ -1,3 +1,9 @@
+本 fork 仅提供一种自定义的 opcode 编译生成 luac 的实现。
+
+[![publish](https://github.com/YYHEggEgg/xLua/actions/workflows/publish.yml/badge.svg)](https://github.com/YYHEggEgg/xLua/actions/workflows/publish.yml)
+
+----------------------------
+
 ![](Assets/XLua/Doc/xLua.png)
 
 [![license](http://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/Tencent/xLua/blob/master/LICENSE.TXT)
