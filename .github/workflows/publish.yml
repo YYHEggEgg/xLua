@@ -2,9 +2,9 @@ name: publish
 
 on: 
   push: 
-    branches: [ "luac-actions" ]
+    branches: [ "luac-actions", "downgrade-libc" ]
   pull_request:
-    branches: [ "master", "luac-actions" ]
+    branches: [ "master", "luac-actions", "downgrade-libc" ]
 
 jobs:
   windows-x86-luac:
@@ -67,7 +67,7 @@ jobs:
           path: ./build/luac/build64/Release
           name: luac_win64_rel
 
-  unix-x64-luac:
+  unix-x64-luac-22.04:
     runs-on: ubuntu-latest
 
     steps:
@@ -94,4 +94,91 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           path: ./build/luac/build_unix/Release
-          name: luac_unix64_rel
+          name: luac_unix64_rel_ubuntu-22.04
+
+  unix-x64-luac-20.04:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Build
+        run: |
+          cd build/luac
+          ./make_unix.sh
+
+      - name: Configure compiled
+        run: |
+          cd build/luac/build_unix
+          mkdir Release
+          mv lua Release/lua
+          mv luac Release/luac
+
+      - name: Compile with built luac
+        run: |
+          cd build/luac/build_unix/Release
+          ./luac -o xlua_test_unix64.luac ../../xlua_test.lua
+      
+      - name: Upload luac executable
+        uses: actions/upload-artifact@v2
+        with:
+          path: ./build/luac/build_unix/Release
+          name: luac_unix64_rel_ubuntu-20.04
+
+  unix-x64-luac-18.04:
+    runs-on: ubuntu-18.04
+
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Build
+        run: |
+          cd build/luac
+          ./make_unix.sh
+
+      - name: Configure compiled
+        run: |
+          cd build/luac/build_unix
+          mkdir Release
+          mv lua Release/lua
+          mv luac Release/luac
+
+      - name: Compile with built luac
+        run: |
+          cd build/luac/build_unix/Release
+          ./luac -o xlua_test_unix64.luac ../../xlua_test.lua
+      
+      - name: Upload luac executable
+        uses: actions/upload-artifact@v2
+        with:
+          path: ./build/luac/build_unix/Release
+          name: luac_unix64_rel_ubuntu-18.04
+
+  unix-x64-luac-16.04:
+    runs-on: ubuntu-16.04
+
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Build
+        run: |
+          cd build/luac
+          ./make_unix.sh
+
+      - name: Configure compiled
+        run: |
+          cd build/luac/build_unix
+          mkdir Release
+          mv lua Release/lua
+          mv luac Release/luac
+
+      - name: Compile with built luac
+        run: |
+          cd build/luac/build_unix/Release
+          ./luac -o xlua_test_unix64.luac ../../xlua_test.lua
+      
+      - name: Upload luac executable
+        uses: actions/upload-artifact@v2
+        with:
+          path: ./build/luac/build_unix/Release
+          name: luac_unix64_rel_ubuntu-16.04
