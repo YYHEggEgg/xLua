@@ -94,10 +94,10 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           path: ./build/luac/build_unix/Release
-          name: luac_unix64_rel_ubuntu-22.04
+          name: luac_unix64_rel_ubuntu-22-04
 
   unix-x64-luac-20.04:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-20-04
 
     steps:
       - uses: actions/checkout@v2
@@ -123,10 +123,10 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           path: ./build/luac/build_unix/Release
-          name: luac_unix64_rel_ubuntu-20.04
+          name: luac_unix64_rel_ubuntu-20-04
 
   unix-x64-luac-18.04:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-18-04
 
     steps:
       - uses: actions/checkout@v2
@@ -152,10 +152,10 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           path: ./build/luac/build_unix/Release
-          name: luac_unix64_rel_ubuntu-18.04
+          name: luac_unix64_rel_ubuntu-18-04
 
   unix-x64-luac-16.04:
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-16-04
 
     steps:
       - uses: actions/checkout@v2
@@ -181,4 +181,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           path: ./build/luac/build_unix/Release
-          name: luac_unix64_rel_ubuntu-16.04
+          name: luac_unix64_rel_ubuntu-16-04
