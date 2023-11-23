@@ -1,10 +1,10 @@
 name: publish
 
 on: 
-  push: 
-    branches: [ "luac-actions" ]
+  push:
+    branches: [ "master" ]
   pull_request:
-    branches: [ "master", "luac-actions" ]
+    branches: [ "master" ]
 
 jobs:
   windows-x86-luac:
@@ -68,7 +68,7 @@ jobs:
           name: luac_win64_rel
 
   unix-x64-luac:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
       - uses: actions/checkout@v2
